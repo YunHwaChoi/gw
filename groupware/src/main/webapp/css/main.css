@@ -1,0 +1,47 @@
+.division {
+	border: 1px solid black;
+	width: 350px;
+	height: 358px;
+	float: left;
+	margin: 20px;
+	font-size: 10.5pt;
+}
+
+.division:nth-child(3) {
+	clear: both;
+}
+
+	.division ul {
+		list-style: none;
+		padding: 0;
+	}
+	
+		.division ul .li_head {
+			background: #969696;
+			color: white;
+			font-weight: bolder;
+			padding: 5px 10px;
+		}
+		
+		.division ul .li_content {
+			height: 22px;
+			line-height: 17px;
+			padding: 3px 10px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			word-break: break-all;
+		}
+		
+		.division ul .li_content:hover {
+			background: #d0d0d0;
+		}
+		
+		.division ul a{
+			text-decoration: none;
+			color: black;
+		}
+		
+		.division ul a:visited {
+			text-decoration: none;
+			color: black;
+		}

@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+
+table{
+	margin: 0 auto;
+	margin-bottom:10px;
+	width: 500px;
+	border-radius: 8px;
+	border: 4px solid #888888;
+	padding: 15px;
+	font-weight: bold;
+	padding-left: 100px;
+}
+
+#table2{
+	border: none;
+}
+
+
+label{
+	line-height: 30px;
+	font-weight: bold;
+}
+
+#updateDiv button {
+	float:right;
+	background-color: #969696;
+	border: 1px solid #dedede;
+	cursor: pointer;
+	padding: 10px;
+	margin: 0 auto;
+}
+
+#updateDiv button:hover{
+	background-color: #eed200;
+}
+
+#title{
+	width: 650px;
+}
+
+#content{
+	width: 650px;
+	height: 300px;
+	resize:none;
+}
+
+#formDiv{
+	margin: 0 auto;
+	margin-top: 40px;
+}
+
+fieldset input:focus{
+	background-color: #fffce6;
+} 
+

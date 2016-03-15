@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.Member">
+
+	<!-- 사원 리스트 -->
+	<select id="list" resultType="com.dk.groupware.member.model.Member">
+		select * from
+		(
+		select rownum rnum, id, name, dep, position from
+		(
+		select id, name, dep, position 
+		from member m, memberPosition mp
+		where m.pno=mp.pno and m.pno!=9
+		order by dep asc, m.pno desc
+		)
+		)
+		where rnum between #{startRow} and #{endRow}
+	</select>	
+	
+<!-- 	totlaRow -->
+	<select id="totalRow" resultType="Integer">
+		select count(*) from member
+	</select>
+	
+<!-- 	사원 ID 찾기 리스트 (사원 검색 리스트) -->
+	<select id="searchList" resultType="com.dk.groupware.member.model.Member">
+		select id, name, dep, position 
+		from member m, memberPosition mp
+		where m.pno=mp.pno 
+		and m.pno!=9
+		and
+<!-- 		<if test="option == '이름'">name=#{search}</if> -->
+<!-- 		<if test="option == '이름+소속부서'">(name=#{search} or dep=#{search})</if> -->
+
+		<if test="option == '이름'">name like '%'||#{search}||'%'</if>
+		<if test="option == '이름+소속부서'">(name like '%'||#{search}||'%' or dep like '%'||#{search}||'%')</if>
+		
+		order by id desc
+	</select>
+
+
+	<!-- 사원 정보 보기 -->
+	<select id="view" resultType="com.dk.groupware.member.model.Member">
+		select id, name, dep, position, m.pno,
+		manager, tel, phone
+		from member m, memberPosition mp
+		where m.pno=mp.pno
+		and id=#{id}
+	</select>
+
+	<!-- 사원 정보 수정 -->
+	<update id="update">
+		update member set
+		name=#{name}, dep=#{dep}, pno=#{pno},
+		manager=#{manager}, tel=#{tel}, phone=#{phone}
+		where id=#{id}
+	</update>
+	
+	<!-- 	사원 비밀번호 수정 -->
+	<update id="pwreset">
+		update member set pw=#{pw} where id=#{id}
+	</update>
+
+	<!-- 사원 등록 -->
+	<insert id="write">
+		insert into member(id, pw, name, dep, pno, manager,
+		tel, phone)
+		values(#{id}, #{pw}, #{name}, #{dep}, #{pno}, #{manager},
+		#{tel}, #{phone})
+	</insert>
+
+	<!-- 사원 퇴사(탈퇴) -->
+	<delete id="delete">
+		delete from member where id=#{id}
+	</delete>
+
+
+	<!-- 내 정보 보기 -->
+	<select id="mview" resultType="com.dk.groupware.member.model.Member">
+		select id, name, pw, dep, position, manager, tel, phone
+		from member m, memberPosition mp
+		where m.pno=mp.pno and id=#{id}
+	</select>
+	
+<!-- 	내정보 수정 -->
+	<update id="mupdate">
+		update member set tel=#{tel}, phone=#{phone} where id=#{id}
+	</update>
+	
+<!-- 	내 비밀번호 수정 -->
+	<update id="pwUpdate">
+		update member set pw=#{pw} where id=#{id}
+	</update>
+	
+<!-- 	기존 비밀번호 확인 -->
+	<select id="currentPwcheck">
+		select pw from member 
+		where id=#{id}
+	</select>
+
+	<!-- 로그인 -->
+	<select id="login" resultType="com.dk.groupware.member.model.Member">
+		select id, name, dep, pno
+		from member
+		where id=#{id} and pw=#{pw}
+	</select>
+	
+<!-- 	결재자 선택 -->
+	<select id="selectSigner" resultType="com.dk.groupware.member.model.Member">
+		select id, name, dep, position
+		from member m, memberPosition mp
+		where m.pno=mp.pno and m.pno!=9
+		order by dep asc, m.pno desc
+	</select>
+
+</mapper>

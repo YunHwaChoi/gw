@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/decorator">
+	
+<!-- 꾸미기 파일에 대한 선언 -->
+	<decorator name="draft" page="draft.jsp">
+		<pattern>/draft/*</pattern>
+	</decorator>
+	
+	<decorator name="schedule" page="schedule.jsp">
+		<pattern>/schedule/*</pattern>
+	</decorator>
+	
+	<decorator name="community" page="community.jsp">
+		<pattern>/notice/*</pattern>
+		<pattern>/board/*</pattern>
+		<pattern>/data/*</pattern>
+		<pattern>/anonymous/*</pattern>
+	</decorator>
+	
+	<decorator name="mypage" page="mypage.jsp">
+		<pattern>/message/*</pattern>
+		<pattern>/mypage/*</pattern>
+		<pattern>/main.do</pattern>
+	</decorator>
+	
+	<decorator name="member" page="member.jsp">
+		<pattern>/member/*</pattern>
+	</decorator>
+	
+	<decorator name="error" page="mypage.jsp">
+		<pattern>/error/*</pattern>
+	</decorator>
+
+<!-- 꾸미기에 적용하지 않는 것들에 대한 선언 -->
+	<excludes>
+		<pattern>/member/selectSigner.do</pattern>
+	</excludes>
+	
+</decorators>

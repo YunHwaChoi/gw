@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+<!-- controller -->
+	<bean class="com.dk.groupware.schedule.controller.ScheduleController">
+		<property name="scheduleListService" ref="scheduleListService" />
+		<property name="scheduleViewService" ref="scheduleViewService" />
+		<property name="scheduleWriteProcessService" ref="scheduleWriteProcessService" />
+		<property name="scheduleUpdateService" ref="scheduleUpdateService" />
+		<property name="scheduleUpdateProcessService" ref="scheduleUpdateProcessService" />
+		<property name="scheduleDeleteProcessService" ref="scheduleDeleteProcessService" />
+	</bean>
+	
+<!-- 	service -->
+	<bean id="scheduleListService" class="com.dk.groupware.schedule.service.ScheduleListService">
+		<property name="scheduleDao" ref="scheduleDao" />
+	</bean>
+	<bean id="scheduleViewService" class="com.dk.groupware.schedule.service.ScheduleViewService">
+		<property name="scheduleDao" ref="scheduleDao" />
+	</bean>
+	<bean id="scheduleWriteProcessService" class="com.dk.groupware.schedule.service.ScheduleWriteProcessService">
+		<property name="scheduleDao" ref="scheduleDao" />
+	</bean>
+	<bean id="scheduleUpdateService" class="com.dk.groupware.schedule.service.ScheduleUpdateService">
+		<property name="scheduleDao" ref="scheduleDao" />
+	</bean>
+	<bean id="scheduleUpdateProcessService" class="com.dk.groupware.schedule.service.ScheduleUpdateProcessService">
+		<property name="scheduleDao" ref="scheduleDao" />
+	</bean>
+	<bean id="scheduleDeleteProcessService" class="com.dk.groupware.schedule.service.ScheduleDeleteProcessService">
+		<property name="scheduleDao" ref="scheduleDao" />
+	</bean>
+	
+<!-- 	dao -->
+	<bean id="scheduleDao" class="com.dk.groupware.schedule.dao.ScheduleDao">
+	 	<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+</beans>

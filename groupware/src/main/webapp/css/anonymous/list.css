@@ -1,0 +1,119 @@
+#content_wrapper {
+	text-align: center;
+	font-size: 10.5pt;
+}
+
+#ano_tbl {
+	border: 1px solid #e0e1db;
+	border-collapse: collapse;
+	text-align: center;
+	width: 100%;
+}
+
+#ano_tbl tr {
+	border: 1px solid #e0e1db;
+	height: 30px;
+}
+
+#ano_tbl tr:hover:not(:first-child) {
+	background: #d0d0d0;
+}
+
+#ano_tbl th {
+	border: 1px solid #e0e1db;
+	padding: 10px;
+}
+
+.no, .writer, .wdate, .hit {
+	padding: 5px;	
+}
+
+.no {
+	width: 70px;
+}
+
+.title {
+	width: auto;
+	text-align: left;
+}
+
+.writer {
+	width: 100px;
+}
+
+.wdate {
+	width: 100px;
+}
+
+.hit {
+	width: 70px;
+}
+
+#ano_tbl td {
+	border: 1px solid #e0e1db;
+	padding: 0;
+}
+
+#ano_tbl td a {
+	display: block;
+	text-decoration: none;
+	color: black;
+	width: 100%;
+	height: 100%;
+	padding: 5px;
+}
+
+#ano_tbl td a:visited {
+	text-decoration: none;
+	color: #777;
+}
+
+.replyIcon {
+	width: 12px;
+	height: 12px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.btn {
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	border: 1px solid #e0e1db;
+	background: #ffffff;
+	color: #000000;
+	padding: 5px 7px;
+	cursor: pointer;
+}
+
+.bottom {
+	margin-top: 10px;
+}
+
+.leftBox {
+	float: left;
+}
+
+.pageBox {
+	padding-top: 30px;
+}
+
+.cpage {
+	color: #edd200;
+	font-weight: bolder;
+}
+
+.pageBox a {
+	text-decoration: none;
+	color: #000000;
+	font-weight: bolder;
+}
+
+.pageBox a:visited {
+	text-decoration: none;
+	color: #000000;
+}
+
+.rightBox {
+	float: right;
+}

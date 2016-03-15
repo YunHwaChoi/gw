@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.Data">
+
+<!-- 	자료실 리스트 -->
+	<select id="list" resultType="com.dk.groupware.data.model.Data">
+		select * from
+		(
+		select rownum rnum, no, title, writer, name, wdate, hit from
+		(
+		select no, title, writer, name, to_char(wdate, 'yyyy-mm-dd') wdate, hit
+		from data d, member m
+		where d.writer=m.id
+		order by no desc
+		)
+		)
+		where rnum between #{startRow} and #{endRow}
+	</select>
+	
+<!-- 	totalRow -->
+	<select id="totalRow" resultType="Integer">
+		select count(*) from data
+	</select>
+	
+<!-- 	자료실 리스트 검색 -->
+	<select id="searchList" resultType="com.dk.groupware.data.model.Data">
+		select no, title, writer, name, to_char(wdate, 'yyyy-mm-dd') wdate, hit
+		from data d, member m
+		where d.writer=m.id
+		and
+		
+		<if test="option == '제목'">title like '%'||#{search}||'%'</if>
+		<if test="option == '내용'">content like '%'||#{search}||'%'</if>
+		<if test="option == '제목+내용'">(title like '%'||#{search}||'%' or content like '%'||#{search}||'%')</if>
+		<if test="option == '작성자'">writer like '%'||#{search}||'%'</if>
+		
+		order by no desc
+	</select>
+	
+<!-- 	글의 총갯수 -->
+	<select id="selectCount" resultType="Integer">
+		select count(no) from data
+<!-- 		<if test="searchWord!=null"> -->
+<!-- 			where #{searchKey} like '%#{searchWord}%' -->
+<!-- 		</if> -->
+	</select>
+	
+<!-- 	자료실 글보기 -->
+	<select id="view" resultType="com.dk.groupware.data.model.Data">
+		select no, title, writer, name, content, hit, fileName 
+		from data d, member m
+		where d.writer=m.id and no=#{no}
+	</select>
+	
+<!-- 	자료실 글쓰기 -->
+	<insert id="write">
+		insert into data(no, title, content, writer <if test="fileName!=null">, fileName</if>)
+		values(data_seq.nextval, #{title}, #{content}, #{writer}<if test="fileName!=null">, #{fileName}</if>)
+	</insert>
+	
+<!-- 	자료실 글수정 -->
+  <update id="update">
+  	update data set title=#{title},content=#{content}
+  	<if test="fileName!=null">,fileName=#{fileName}</if> where no=#{no}
+  </update>
+  
+<!--   자료실 글삭제 -->
+  <delete id="delete">
+  	delete from data where no=#{no}
+  </delete>
+  
+<!-- 	조회수 증가 -->
+<update id="increase">
+	update data set hit=hit+1 where no=#{no}
+</update>
+</mapper>

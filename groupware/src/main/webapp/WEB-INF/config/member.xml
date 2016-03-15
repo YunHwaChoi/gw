@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+<!-- 컨트롤러 -->
+<bean class="com.dk.groupware.member.controller.MemberController">
+	<property name="memberListService" ref="memberListService"/>
+	<property name="memberSearchListService" ref="memberSearchListService"/>
+	<property name="memberViewService" ref="memberViewService"/>
+	<property name="memberUpdateService" ref="memberUpdateService"/>
+	<property name="memberUpdateProcessService" ref="memberUpdateProcessService"/>	
+	<property name="memberWriteProcessService" ref="memberWriteProcessService"/>
+	<property name="memberDeleteProcessService" ref="memberDeleteProcessService"/>
+	<property name="loginProcessService" ref="loginProcessService"/>
+	<property name="myPageViewService" ref="myPageViewService"/>
+	<property name="myPageUpdateService" ref="myPageUpdateService"/>
+	<property name="myPageUpdateProcessService" ref="myPageUpdateProcessService"/>
+<!-- 	<property name="myPwChangeUpdateService" ref="myPwChangeUpdateService"/> -->
+	<property name="myPwChangeProcessService" ref="myPwChangeProcessService"/>
+<!-- 	<property name="currentPwCheckService" ref="currentPwCheckService"/> -->
+<!-- 	<property name="resetPwUpdateService" ref="resetPwUpdateService"/> -->
+	<property name="resetPwProcessService" ref="resetPwProcessService"/>
+	<property name="selectSignerService" ref="selectSignerService"/>
+</bean>
+
+<!-- 서비스 -->
+<bean id="memberListService" class="com.dk.groupware.member.service.MemberListService">
+	<property name="memberDao" ref="memberDao"/>
+</bean>
+<bean id="memberSearchListService" class="com.dk.groupware.member.service.MemberSearchListService">
+	<property name="memberDao" ref="memberDao"/>
+</bean>
+<bean id="memberViewService" class="com.dk.groupware.member.service.MemberViewService">
+	<property name="memberDao" ref="memberDao"/>
+</bean>
+<bean id="memberUpdateService" class="com.dk.groupware.member.service.MemberUpdateService">
+	<property name="memberDao" ref="memberDao"/>
+</bean>
+<bean id="memberUpdateProcessService" class="com.dk.groupware.member.service.MemberUpdateProcessService">
+	<property name="memberDao" ref="memberDao"/>
+</bean>
+<bean id="memberWriteProcessService" class="com.dk.groupware.member.service.MemberWriteProcessService">
+	<property name="memberDao" ref="memberDao"/>
+</bean>
+<bean id="memberDeleteProcessService" class="com.dk.groupware.member.service.MemberDeleteProcessService">
+	<property name="memberDao" ref="memberDao"/>
+</bean>
+<bean id="myPageViewService" class="com.dk.groupware.member.service.MyPageViewService">
+	<property name="memberDao" ref="memberDao"/>
+</bean>
+<bean id="loginProcessService" class="com.dk.groupware.member.service.LoginProcessService">
+	<property name="memberDao" ref="memberDao"/>
+</bean>
+<bean id="myPageUpdateService" class="com.dk.groupware.member.service.MyPageUpdateService">
+	<property name="memberDao" ref="memberDao"/>
+</bean>
+<bean id="myPageUpdateProcessService" class="com.dk.groupware.member.service.MyPageUpdateProcessService">
+	<property name="memberDao" ref="memberDao"/>
+</bean>
+<!-- <bean id="myPwChangeUpdateService" class="com.dk.groupware.member.service.MyPwChangeUpdateService"> -->
+<!-- 	<property name="memberDao" ref="memberDao"/> -->
+<!-- </bean> -->
+<bean id="myPwChangeProcessService" class="com.dk.groupware.member.service.MyPwChangeProcessService">
+	<property name="memberDao" ref="memberDao"/>
+</bean>
+<!-- <bean id="currentPwCheckService" class="com.dk.groupware.member.service.CurrentPwCheckService"> -->
+<!-- 	<property name="memberDao" ref="memberDao"/> -->
+<!-- </bean> -->
+<!-- <bean id="resetPwUpdateService" class="com.dk.groupware.member.service.ResetPwUpdateService"> -->
+<!-- 	<property name="memberDao" ref="memberDao"/> -->
+<!-- </bean> -->
+<bean id="resetPwProcessService" class="com.dk.groupware.member.service.ResetPwProcessService">
+	<property name="memberDao" ref="memberDao"/>
+</bean>
+<bean id="selectSignerService" class="com.dk.groupware.member.service.SelectSignerService">
+	<property name="memberDao" ref="memberDao"/>
+</bean>
+
+<!-- dao -->
+<bean id="memberDao" class="com.dk.groupware.member.dao.MemberDao">
+	<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+</bean>
+</beans>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.Schedule">
+
+	<!-- 일정관리 리스트 -->
+	<select id="list" resultType="com.dk.groupware.schedule.model.Schedule">
+		select no, title, to_char(sdate,
+		'yyyy') as year, to_char(sdate, 'mm') as month,
+		to_char(sdate, 'dd') as day, time from schedule where writer=#{writer}
+		order by to_number(time)
+	</select>
+	<!-- 일정관리의 총갯수 -->
+	<select id="selectCount" resultType="Integer">
+		select count(no) from
+		schedule
+	</select>
+	<!-- 일정보기 -->
+	<select id="view" resultType="com.dk.groupware.schedule.model.Schedule">
+		select no, title, to_char(sdate,
+		'yyyy-mm-dd') sdate, time, content, writer from schedule
+		where no=#{no}
+	</select>
+	<!-- 일정등록 -->
+	<insert id="write">
+		insert into schedule(no, title, sdate, time, content,
+		writer)
+		values(schedule_seq.nextval,#{title},#{sdate},#{time},#{content},#{writer})
+	</insert>
+	<!-- 일정수정 -->
+	<update id="update">
+		update schedule set title=#{title},sdate=#{sdate},time=#{time},
+		content=#{content}, writer=#{writer} where no=#{no}
+	</update>
+	<!-- 일정삭제 -->
+	<delete id="delete">
+		delete from schedule where no=#{no}
+	</delete>
+	<!-- 일정관리 리스트 메인화면용 -->
+	<select id="listLimit" resultType="com.dk.groupware.schedule.model.Schedule">
+		select * from
+		(
+		select rownum rnum, no, title, year, month, day, time from
+		(
+		select no, title, to_char(sdate, 'yyyy') as year, to_char(sdate, 'mm') as
+		month,
+		to_char(sdate, 'dd') as day, time from schedule where writer=#{writer}
+		order by year desc, month desc, day desc, time asc
+		)
+		)
+		where rnum between 1 and 15
+	</select>
+</mapper>

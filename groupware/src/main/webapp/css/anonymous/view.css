@@ -1,0 +1,143 @@
+#content_wrapper {
+	font-size: 10.5pt;
+	text-align: left;
+}
+
+hr {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #e0e1db;
+}
+
+.title {
+	float: left;
+}
+
+.writer {
+	float: right;
+	margin-top: 10px;
+}
+
+.hitWdate {
+	float: right;
+}
+
+.hit {
+	float: right;
+}
+
+.wdate {
+	float: right;
+}
+
+.content {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	min-height: 100px;
+}
+
+.content pre {
+	line-height: 1.6;
+}
+
+.btnDiv {
+	float: right;
+}
+
+.replyBox {
+	border: 1px solid #e0e1db;
+	padding: 10px;
+	margin-top: 10px;
+}
+
+.replyBox ul {
+	list-style: none;
+	padding: 0;
+}
+
+.replyItem {
+	border-bottom: 1px dotted #EEE;
+	padding: 10px;
+}
+
+.replyWriter {
+	float: left;
+}
+
+.replyWdate {
+	float: right;
+}
+
+.replyContent {
+	margin-top: 10px;
+	padding-bottom: 50px;
+}
+
+.replyBtn {
+	float: right;
+	height: 27px;
+}
+
+.replyUpdateBtn {
+	float: right;
+}
+
+.replyDeleteBtn {
+	float: right;
+}
+
+.replyUpdateForm {
+	padding: 10px;
+}
+
+.replyUpdateContent {
+	margin-top: 10px;
+	width: 718px;
+	height: 100px;
+	resize: none;
+}
+
+.replyUpdateSubmit {
+	float: right;
+}
+
+.replyUpdateCancel {
+	float: right;
+}
+
+.pageMove {
+	margin-top: 10px;
+	text-align: center;
+}
+
+.cpage {
+	color: #edd200;
+	font-weight: bolder;
+}
+
+.pageMove a {
+	text-decoration: none;
+	color: #000000;
+	font-weight: bolder;
+}
+
+.pageMove a:visited {
+	text-decoration: none;
+	color: #000000;
+}
+
+.replyForm {
+	margin-top: 30px;
+}
+
+.replyFormContent {
+	width: 760px;
+	height: 200px;
+	resize: none;
+}
+
+.replyFormUpdateBtn {
+	margin-top: 10px;
+	float: right;
+}
+

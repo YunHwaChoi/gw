@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+#table{
+	height:auto;	
+	margin:0 auto;
+	padding:15px;
+	border:1px solid #ccc;
+	width: 900px;
+	table-layout: fixed;
+	word-break:break all;
+	border-radius:8px;
+}
+
+#listBtn, #deleteBtn, #updateBtn {
+	display: block;
+	background-color: #969696;
+	border: 1px solid #dedede;
+	cursor: pointer;
+	padding: 10px;
+	margin: 0 auto;
+	float: right;
+}
+
+#listBtn:hover, #deleteBtn:hover, #updateBtn:hover {
+	background-color: #edd200;
+}
+
+#table th{
+	width: 70px;
+	text-align: left;
+}
+#tdLine{
+	border-bottom: 1px dashed #ccc;
+}
+
+#contentGap, #fileGap{
+	height:30px;
+}
+
+#btnDiv button{
+	padding-top:10px;
+	margin-top:20px;
+	float: right;
+	}
+	
+#btnDiv{
+	margin-right:70px;
+}
+

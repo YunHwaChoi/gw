@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<bean class="com.dk.groupware.anonymous.controller.AnonymousController">
+		<property name="anonymousListService" ref="anonymousListService" />
+		<property name="anonymousViewService" ref="anonymousViewService" />
+		<property name="anonymousWriteProcessService" ref="anonymousWriteProcessService" />
+		<property name="anonymousUpdateService" ref="anonymousUpdateService" />
+		<property name="anonymousUpdateProcessService" ref="anonymousUpdateProcessService" />
+		<property name="anonymousDeleteProcessService" ref="anonymousDeleteProcessService" />
+		<property name="anonymousReplyListService" ref="anonymousReplyListService" />
+		<property name="anonymousReplyWriteProcessService" ref="anonymousReplyWriteProcessService" />
+		<property name="anonymousReplyUpdateProcessService" ref="anonymousReplyUpdateProcessService" />
+		<property name="anonymousReplyDeleteProcessService" ref="anonymousReplyDeleteProcessService" />
+	</bean>
+	
+	<bean id="anonymousListService" class="com.dk.groupware.anonymous.service.AnonymousListService">
+		<property name="anonymousDao" ref="anonymousDao" />
+	</bean>
+	
+	<bean id="anonymousViewService" class="com.dk.groupware.anonymous.service.AnonymousViewService">
+		<property name="anonymousDao" ref="anonymousDao" />
+	</bean>
+	
+	<bean id="anonymousWriteProcessService" class="com.dk.groupware.anonymous.service.AnonymousWriteProcessService">
+		<property name="anonymousDao" ref="anonymousDao" />
+	</bean>
+	
+	<bean id="anonymousUpdateService" class="com.dk.groupware.anonymous.service.AnonymousUpdateService">
+		<property name="anonymousDao" ref="anonymousDao" />
+	</bean>
+	
+	<bean id="anonymousUpdateProcessService" class="com.dk.groupware.anonymous.service.AnonymousUpdateProcessService">
+		<property name="anonymousDao" ref="anonymousDao" />
+	</bean>
+	
+	<bean id="anonymousDeleteProcessService" class="com.dk.groupware.anonymous.service.AnonymousDeleteProcessService">
+		<property name="anonymousDao" ref="anonymousDao" />
+	</bean>
+	
+	<bean id="anonymousReplyListService" class="com.dk.groupware.anonymous.service.AnonymousReplyListService">
+		<property name="anonymousDao" ref="anonymousDao" />
+	</bean>
+	
+	<bean id="anonymousReplyWriteProcessService" class="com.dk.groupware.anonymous.service.AnonymousReplyWriteProcessService">
+		<property name="anonymousDao" ref="anonymousDao" />
+	</bean>
+	
+	<bean id="anonymousReplyUpdateProcessService" class="com.dk.groupware.anonymous.service.AnonymousReplyUpdateProcessService">
+		<property name="anonymousDao" ref="anonymousDao" />
+	</bean>
+	
+	<bean id="anonymousReplyDeleteProcessService" class="com.dk.groupware.anonymous.service.AnonymousReplyDeleteProcessService">
+		<property name="anonymousDao" ref="anonymousDao" />
+	</bean>
+	
+	<bean id="anonymousDao" class="com.dk.groupware.anonymous.dao.AnonymousDao">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+	
+</beans>

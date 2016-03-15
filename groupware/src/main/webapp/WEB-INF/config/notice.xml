@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+<!-- 	controller :property로 service 적용-->
+	<bean class="com.dk.groupware.notice.controller.NoticeController">
+		<property name="noticeListService" ref="noticeListService" />
+		<property name="noticeSearchListService" ref="noticeSearchListService" />
+		<property name="noticeWriteProcessService" ref="noticeWriteProcessService" />
+		<property name="noticeViewService" ref="noticeViewService" />
+		<property name="noticeUpdateService" ref="noticeUpdateService" />
+		<property name="noticeUpdateProcessService" ref="noticeUpdateProcessService" />
+		<property name="noticeDeleteProcessService" ref="noticeDeleteProcessService" />
+	</bean>
+	
+<!-- 	service  -->
+	<bean id="noticeListService" class="com.dk.groupware.notice.service.NoticeListService">
+		<property name="noticeDao" ref="noticeDao" />
+	</bean>
+	<bean id="noticeSearchListService" class="com.dk.groupware.notice.service.NoticeSearchListService">
+		<property name="noticeDao" ref="noticeDao" />
+	</bean>
+	<bean id="noticeWriteProcessService" class="com.dk.groupware.notice.service.NoticeWriteProcessService">
+		<property name="noticeDao" ref="noticeDao" />
+	</bean>
+	<bean id="noticeViewService" class="com.dk.groupware.notice.service.NoticeViewService">
+		<property name="noticeDao" ref="noticeDao" />
+	</bean>
+<!-- 	updateService는 viewService로 대신할 수 있음 :  보기 편하도록 따로 만듦 -->
+	<bean id="noticeUpdateService" class="com.dk.groupware.notice.service.NoticeUpdateService">
+		<property name="noticeDao" ref="noticeDao" />
+	</bean>
+	<bean id="noticeUpdateProcessService" class="com.dk.groupware.notice.service.NoticeUpdateProcessService">
+		<property name="noticeDao" ref="noticeDao" />
+	</bean>
+	<bean id="noticeDeleteProcessService" class="com.dk.groupware.notice.service.NoticeDeleteProcessService">
+		<property name="noticeDao" ref="noticeDao" />
+	</bean>
+	
+<!-- 	dao -->
+	<bean id="noticeDao" class="com.dk.groupware.notice.dao.NoticeDao" >
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+</beans>

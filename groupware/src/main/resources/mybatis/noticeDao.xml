@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.Notice">
+
+	<!-- 공지사항 리스트 : list -->
+	<select id="list" resultType="com.dk.groupware.notice.model.Notice">
+		select * from
+		(
+		select rownum rnum, no, title, writer, name, wdate, hit from
+		(
+		select no, title, writer, name,
+		to_char(wdate, 'yyyy-mm-dd') wdate, hit 
+		from notice n, member m
+		where n.writer=m.id
+		order by no desc
+		)
+		)
+		where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 공지사항 리스트 검색 : list -->
+	<select id="searchList" resultType="com.dk.groupware.notice.model.Notice">
+		select no, title, writer, name,
+		to_char(wdate, 'yyyy-mm-dd') wdate, hit 
+		from notice n, member m
+		where n.writer=m.id
+		and
+		
+		<if test="option == '제목'">title like '%'||#{search}||'%'</if>
+		<if test="option == '내용'">content like '%'||#{search}||'%'</if>
+<!-- 		복잡하므로 소괄호로 묶어준다. -->
+		<if test="option == '제목+내용'">(title like '%'||#{search}||'%' or content like '%'||#{search}||'%')</if>
+<!-- 		*** -->
+		<if test="option == '작성자'">name like '%'||#{search}||'%'</if>
+		
+		order by no desc
+	</select>
+
+	<!-- 공지사항 작성 : write -->
+	<insert id="write">
+		insert into notice(no, title, content, writer 
+		<if test="fileName!=null">,fileName</if>
+		)
+		values(notice_seq.nextval,#{title},#{content},#{writer}
+		<if test="fileName!=null">,#{fileName}</if>
+		)
+	</insert>
+
+	<!-- 공지사항 보기 : view -->
+	<select id="view" resultType="com.dk.groupware.notice.model.Notice">
+		select no, title, content, writer, name,
+		to_char(wdate, 'yyyy-mm-dd') wdate, hit, fileName 
+		from notice n, member m
+		where no=#{no} and n.writer=m.id
+	</select>
+
+ 	<!-- 	조회수 증가 --> 
+	<update id="increase">
+		update notice set hit = hit +1 where no =#{no}
+	</update>
+	
+	<!-- 공지사항 수정 : update -->
+<!-- 	파일을 다시 업로드 할 때, 에러가 나므로 if문(동적쿼리)을 사용한다. -->
+	<update id="update">
+		update notice set title=#{title},content=#{content}, writer=#{writer}
+		<if test="fileName!=null">, fileName=#{fileName}</if>
+		where no=#{no}
+	</update>
+
+
+	<!-- 공지사항 삭제 : delete -->
+	<delete id="delete">
+		delete from notice where no=#{no}
+	</delete>
+
+
+	<!-- 글의 총 갯수 : if 및 반복문도 사용 가능 -->
+	<select id="totalRow" resultType="Integer">
+		select count(*) from notice
+	</select>
+
+	<select id="listLimit" resultType="com.dk.groupware.notice.model.Notice">
+		select * from
+		(
+		select rownum rnum, no, title, writer, name, wdate, hit from
+		(
+		select no, title, writer, name,
+		to_char(wdate, 'yyyy-mm-dd') wdate, hit 
+		from notice n, member m
+		where n.writer=m.id
+		order by no desc
+		)
+		)
+		where rnum between 1 and 15
+	</select>
+
+</mapper>

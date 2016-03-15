@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+<!-- 컨트롤러 -->
+	<bean class="com.dk.groupware.data.controller.DataController">
+		<property name="dataListService" ref="dataListService"/>
+		<property name="dataSearchListService" ref="dataSearchListService"/>
+		<property name="dataViewService" ref="dataViewService"/>
+		<property name="dataWriteProcessService" ref="dataWriteProcessService"/>
+		<property name="dataUpdateService" ref="dataUpdateService"/>
+		<property name="dataUpdateProcessService" ref="dataUpdateProcessService"/>
+		<property name="dataDeleteProcessService" ref="dataDeleteProcessService"/>
+	</bean>
+
+<!-- 서비스 -->
+	<bean id="dataListService" class="com.dk.groupware.data.service.DataListService">
+		<property name="dataDao" ref="dataDao"/>
+	</bean>
+	<bean id="dataSearchListService" class="com.dk.groupware.data.service.DataSearchListService">
+		<property name="dataDao" ref="dataDao"/>
+	</bean>
+	<bean id="dataViewService" class="com.dk.groupware.data.service.DataViewService">
+		<property name="dataDao" ref="dataDao"/>
+	</bean>
+	<bean id="dataWriteProcessService" class="com.dk.groupware.data.service.DataWriteProcessService">
+		<property name="dataDao" ref="dataDao"/>
+	</bean>
+	<bean id="dataUpdateService" class="com.dk.groupware.data.service.DataUpdateService">
+		<property name="dataDao" ref="dataDao"/>
+	</bean>
+	<bean id="dataUpdateProcessService" class="com.dk.groupware.data.service.DataUpdateProcessService">
+		<property name="dataDao" ref="dataDao"/>
+	</bean>
+	<bean id="dataDeleteProcessService" class="com.dk.groupware.data.service.DataDeleteProcessService">
+		<property name="dataDao" ref="dataDao"/>
+	</bean>
+	
+<!-- 	dao -->
+	<bean id="dataDao" class="com.dk.groupware.data.dao.DataDao">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate"/>
+	</bean>
+</beans>

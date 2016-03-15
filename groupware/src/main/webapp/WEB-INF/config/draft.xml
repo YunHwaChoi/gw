@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<bean class="com.dk.groupware.draft.controller.DraftController">
+		<property name="draftListService" ref="draftListService" />
+		<property name="draftWriteProcessService" ref="draftWriteProcessService" />
+		
+		<property name="waitListService" ref="waitListService" />
+		<property name="waitViewService" ref="waitViewService" />
+		<property name="waitSignProcessService" ref="waitSignProcessService" />
+		<property name="waitUpdateService" ref="waitUpdateService" />
+		<property name="waitUpdateProcessService" ref="waitUpdateProcessService" />
+		<property name="waitDeleteProcessService" ref="waitDeleteProcessService" />
+		
+		<property name="proceedListService" ref="proceedListService" />
+		<property name="proceedViewService" ref="proceedViewService" />
+		<property name="proceedSignProcessService" ref="proceedSignProcessService" />
+
+		<property name="doneListService" ref="doneListService" />
+		<property name="doneViewService" ref="doneViewService" />
+	</bean>
+	
+	<bean id="draftListService" class="com.dk.groupware.draft.service.DraftListService">
+		<property name="draftDao" ref="draftDao" />
+	</bean>
+	
+	<bean id="draftWriteProcessService" class="com.dk.groupware.draft.service.DraftWriteProcessService">
+		<property name="draftDao" ref="draftDao" />
+	</bean>
+	
+	
+	<bean id="waitListService" class="com.dk.groupware.draft.service.WaitListService">
+		<property name="draftDao" ref="draftDao" />
+	</bean>
+	
+	<bean id="waitViewService" class="com.dk.groupware.draft.service.WaitViewService">
+		<property name="draftDao" ref="draftDao" />
+	</bean>
+	
+	<bean id="waitSignProcessService" class="com.dk.groupware.draft.service.WaitSignProcessService">
+		<property name="draftDao" ref="draftDao" />
+	</bean>
+	
+	<bean id="waitUpdateService" class="com.dk.groupware.draft.service.WaitUpdateService">
+		<property name="draftDao" ref="draftDao" />
+	</bean>
+	
+	<bean id="waitUpdateProcessService" class="com.dk.groupware.draft.service.WaitUpdateProcessService">
+		<property name="draftDao" ref="draftDao" />
+	</bean>
+	
+	<bean id="waitDeleteProcessService" class="com.dk.groupware.draft.service.WaitDeleteProcessService">
+		<property name="draftDao" ref="draftDao" />
+	</bean>
+
+
+	<bean id="proceedListService" class="com.dk.groupware.draft.service.ProceedListService">
+		<property name="draftDao" ref="draftDao" />
+	</bean>
+	
+	<bean id="proceedViewService" class="com.dk.groupware.draft.service.ProceedViewService">
+		<property name="draftDao" ref="draftDao" />
+	</bean>
+	
+	<bean id="proceedSignProcessService" class="com.dk.groupware.draft.service.ProceedSignProcessService">
+		<property name="draftDao" ref="draftDao" />
+	</bean>
+	
+	
+	<bean id="doneListService" class="com.dk.groupware.draft.service.DoneListService">
+		<property name="draftDao" ref="draftDao" />
+	</bean>
+	
+	<bean id="doneViewService" class="com.dk.groupware.draft.service.DoneViewService">
+		<property name="draftDao" ref="draftDao" />
+	</bean>
+
+	
+	<bean id="draftDao" class="com.dk.groupware.draft.dao.DraftDao">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+	
+</beans>

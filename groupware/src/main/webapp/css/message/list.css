@@ -1,0 +1,79 @@
+@CHARSET "UTF-8";
+
+#listForm table {
+	width: 1040px;
+}
+/* 이중 줄 합치기 */
+#messageTable {
+	border-collapse: collapse;
+}
+
+#messageTable, #messageTr {
+	margin: 0 auto;
+	font-size: 10.5pt;
+}
+
+.messageTh, .messageTd {
+	padding: 10px;
+	border: 1px solid #888888;
+/* 	텍스트 가운데 정렬 */
+	text-align: center;
+}
+/* 제목 줄 배경색 */
+.messageTh, #messageThTitle {
+	background-color: #d0d0d0;
+}
+
+#messageTdTitle {
+	border: 1px solid #888888;
+	height: 100%;
+	width: auto;
+}
+
+#messageThTitle {
+	padding: 10px;
+	border: 1px solid #888888;
+	width: 470px;
+/* 	overflow: hidden;  */
+}
+
+#messageTdTitle:hover {
+	background: #d0d0d0;
+}
+#messageTdTitle a{
+/* 	텍스트 링크의 밑줄 없애기 */
+	text-decoration: none;	
+	color: black;
+/* 한 줄 전체를 클릭가능하게 하기 위함 */
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+}
+
+/*  버튼 */
+#messageBtn, #messageDeleteBtn {
+	display: block;
+	background-color: #969696;
+	border: 1px solid #dedede;
+	cursor: pointer;
+	padding: 10px;
+	margin: 0 auto;
+	float: right;
+}
+#messageBtnA a{
+	text-decoration: none;	
+}
+
+#messageBtn:hover , #messageDeleteBtn:hover{
+	background-color: #edd200;
+}
+
+#pageMove a {
+	color: black;
+}
+
+#pageMove {
+	margin-top: 20px;
+	text-align: center;
+}

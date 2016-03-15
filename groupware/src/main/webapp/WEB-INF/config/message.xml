@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+<!-- 	controller :property로 service 적용-->
+	<bean class="com.dk.groupware.message.controller.MessageController">
+		<property name="messageListService" ref="messageListService" />
+<!-- 		<property name="messageSearchListService" ref="messageSearchListService" /> -->
+		<property name="messageWriteProcessService" ref="messageWriteProcessService" />
+		<property name="messageViewService" ref="messageViewService" />
+<!-- 		<property name="messageUpdateProcessService" ref="messageUpdateProcessService" /> -->
+		<property name="messageDeleteProcessService" ref="messageDeleteProcessService" />
+		
+		<property name="messageSendListService" ref="messageSendListService" />
+		<property name="messageSendViewService" ref="messageSendViewService" />
+		<property name="messageSendDeleteProcessService" ref="messageSendDeleteProcessService" />
+		
+		<property name="messageCountService" ref="messageCountService" />
+	</bean>
+	
+<!-- 	service :  보내기, 받기, 읽기, 삭제 -->
+	<bean id="messageListService" class="com.dk.groupware.message.service.MessageListService">
+		<property name="messageDao" ref="messageDao" />
+	</bean>
+<!-- 	<bean id="messageSearchListService" class="com.dk.groupware.message.service.MessageSearchListService"> -->
+<!-- 		<property name="messageDao" ref="messageDao" /> -->
+<!-- 	</bean> -->
+	<bean id="messageWriteProcessService" class="com.dk.groupware.message.service.MessageWriteProcessService">
+		<property name="messageDao" ref="messageDao" />
+	</bean>
+	<bean id="messageViewService" class="com.dk.groupware.message.service.MessageViewService">
+		<property name="messageDao" ref="messageDao" />
+	</bean>
+<!-- 	updateService는 viewService로 대신할 수 있음 :  보기 편하도록 따로 만듦 -->
+<!-- 	<bean id="messageUpdateService" class="com.dk.groupware.message.service.MessageUpdateService"> -->
+<!-- 		<property name="messageDao" ref="messageDao" /> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="messageUpdateProcessService" class="com.dk.groupware.message.service.MessageUpdateProcessService"> -->
+<!-- 		<property name="messageDao" ref="messageDao" /> -->
+<!-- 	</bean> -->
+	<bean id="messageDeleteProcessService" class="com.dk.groupware.message.service.MessageDeleteProcessService">
+		<property name="messageDao" ref="messageDao" />
+	</bean>
+	
+	
+<!-- 	send -->
+	<bean id="messageSendListService" class="com.dk.groupware.message.service.MessageSendListService">
+		<property name="messageDao" ref="messageDao" />
+	</bean>	
+	<bean id="messageSendViewService" class="com.dk.groupware.message.service.MessageSendViewService">
+		<property name="messageDao" ref="messageDao" />
+	</bean>	
+		<bean id="messageSendDeleteProcessService" class="com.dk.groupware.message.service.MessageSendDeleteProcessService">
+		<property name="messageDao" ref="messageDao" />
+	</bean>	
+	
+<!-- 	count -->
+	<bean id="messageCountService" class="com.dk.groupware.message.service.MessageCountService">
+		<property name="messageDao" ref="messageDao" />
+	</bean>
+	
+<!-- 	dao -->
+	<bean id="messageDao" class="com.dk.groupware.message.dao.MessageDao" >
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+
+</beans>

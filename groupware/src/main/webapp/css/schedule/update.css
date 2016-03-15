@@ -1,0 +1,67 @@
+@CHARSET "UTF-8";
+
+#updateBody {
+	width:1000px;
+	font-size: 12px;
+}
+
+/* input과 textarea를 맞추기 위함 */
+#scheduleUpdateField input {
+	width:730px;
+}
+#updateUl textarea {
+	width: 730px;
+	height: 300px;
+}
+#scheduleUpdateField {
+	margin: 15px 10px;
+}
+
+#scheduleUpdateField ul li {
+	list-style:none; 
+	margin: 15px 0;	
+}
+
+#updateLi2 input{
+	width: 150px;
+}
+
+#scheduleUpdateField label {
+	width:110px;
+	color:#888888;
+	font-weight:bold;		
+	float:left;
+	text-align:right;
+	margin-right:10px;
+}
+
+#updateUl {
+	list-style: none;
+	padding: 0;
+}
+#updateUl input:focus, #updateUl textarea:focus {
+	background-color: #fffce6;
+}
+#Btn{
+	text-align: center;
+}
+#submit_Btn{
+	width: 55px;
+	height: 24px;
+	cursor: pointer;
+	background-color: #00284d;
+	color: white;
+}
+#cancer_Btn{
+	width: 55px;
+	height: 24px;
+	cursor: pointer;
+	background-color: white;
+	color: #00284d;
+}
+h1{
+	text-align: center;
+}
+.remaining{
+	margin-left: 120px;
+}

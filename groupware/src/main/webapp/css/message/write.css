@@ -1,0 +1,67 @@
+@CHARSET "UTF-8";
+
+#messageBody {
+	width:1000px;
+	font-size: 10.5px;
+}
+
+#messageWriteDiv {
+	width:1000px;
+	margin: 15px auto;
+	padding:10px;
+	border:1px solid #666;
+	border-radius:10px;
+	background:white;
+
+}
+/* input과 textarea를 맞추기 위함 */
+#messageWriteField input {
+ 	width:730px;
+}
+#messageUl textarea {
+	width: 730px;
+	height: 300px;
+}
+
+#messageWriteField {
+	margin: 15px 10px;
+}
+
+#messageWriteField ul li {
+	list-style:none; 
+	margin: 15px 0;	
+}
+
+
+#messageWriteField label {
+	width:110px;
+	color:#888888;
+	font-weight:bold;		
+	float:left;
+	text-align:right;
+	margin-right:10px;
+}
+
+#messageUl {
+	list-style: none;
+	padding: 0;
+}
+
+#messageUl input:focus, #messageUl textarea:focus {
+	background-color: #fffce6;
+}
+
+/*  버튼 */
+#messageWriteDiv button {
+	display: block;
+	background-color: #969696;
+	border: 1px solid #dedede;
+	cursor: pointer;
+	padding: 10px;
+	margin: 0 auto;
+	float: right;
+}
+
+#messageWriteDiv button:hover {
+	background-color: #edd200;
+ } 

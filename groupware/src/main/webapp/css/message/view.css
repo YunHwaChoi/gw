@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+
+/* 이중 줄 합치기 */
+#messageTable {
+	border-collapse: collapse;
+}
+
+#messageTable, .messageTr {
+	margin: 0 auto;
+	font-size: 10.5pt;
+}
+
+.messageTr th, .messageTr td {
+	padding: 10px;
+	border: 1px solid #888888;
+	width: auto;
+}
+.messageTr th {
+	/* 	텍스트 가운데 정렬 */
+	text-align: center;
+}
+/* 제목 줄 배경색 */
+.messageTr th {
+	background-color: #d0d0d0;
+}
+
+.messageTr td {
+	padding: 10px;
+	border: 1px solid #888888;
+	width: 975px;
+	text-align: left;
+}
+
+.messageTr td pre {
+	  white-space: pre-wrap;  
+}
+
+
+/*  버튼 */
+#messageBtn {
+	display: block;
+	background-color: #969696;
+	border: 1px solid #dedede;
+	cursor: pointer;
+	padding: 10px;
+	margin: 0 auto;
+	float: right;
+}
+#messageBtnA  {
+	text-decoration: none;	
+}
+
+#messageBtn:hover {
+	background-color: #edd200;
+ } 

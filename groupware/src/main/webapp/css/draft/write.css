@@ -1,0 +1,19 @@
+.body {
+	width: 870px;
+	float: left;
+}
+
+.btnBoxR {
+	float: right;
+	margin-top: 10px;
+}
+
+.btnBoxL {
+	float: left;
+}
+
+#form1 table {
+	margin: 10px 10px 10px 0;
+	line-height: 30px;
+}
+

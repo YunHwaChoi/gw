@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.Message">
+
+	<!-- 테이블 생성 -글번호, 제목,내용, 보낸시간, 보낸사람, 받은사람, 확인시간) -->
+	<!-- no title content sdate sender receiver rdate -->
+
+	<!-- 받은 쪽지 리스트 : list -->
+	<select id="list" resultType="com.dk.groupware.message.model.Message">
+		select * from
+		(
+		select rownum rnum, no, title, sender, receiver, rdate, sdate, name from
+		(
+		select no, title, sender, receiver,
+		to_char(rdate, 'yyyy-mm-dd AM hh:mi:ss') rdate,
+		to_char(sdate, 'yyyy-mm-dd AM HH:MI:SS') sdate,
+		name
+		from message msg, member mb
+		where receiver=#{id} and msg.sender=mb.id
+		order by no desc
+		)
+		)
+		where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	
+	<!-- 받은 쪽지 리스트 검색 : list -->
+<!-- 	<select id="searchList" resultType="com.dk.groupware.message.model.Message"> -->
+<!-- 		select no, title, sender, receiver, -->
+<!-- 		to_char(rdate, 'yyyy-mm-dd AM hh:mi:ss') rdate, -->
+<!-- 		to_char(sdate, 'yyyy-mm-dd AM HH:MI:SS') sdate, -->
+<!-- 		name -->
+<!-- 		from message msg, member mb -->
+<!-- 		where receiver=#{id} and msg.receiver=mb.id and msg.sender=mb.id -->
+<!-- 		and -->
+		
+<!-- 		<if test="option == '제목'">title like '%'||#{search}||'%'</if> -->
+<!-- 		<if test="option == '내용'">content like '%'||#{search}||'%'</if> -->
+<!-- 		<if test="option == '제목+내용'">(title like '%'||#{search}||'%' or content like '%'||#{search}||'%')</if> -->
+<!-- 		<if test="option == '보낸사람'">receiver like '%'||#{search}||'%'</if> -->
+		
+<!-- 		order by no desc -->
+<!-- 	</select> -->
+
+	<!-- 새 쪽지 표시 - 안읽은 쪽지 갯수 -->
+	<select id="count" resultType="Integer">
+		select count(*) from message
+		where rdate is null and receiver=#{id}
+	</select>
+
+	<!-- 쪽지 보내기 : write -->
+	<insert id="write">
+		insert into message(no, title, content, sender,
+		receiver 
+		<if test="fileName!=null">,fileName</if>
+		)
+		values(message_seq.nextval,#{title},#{content},#{sender},#{receiver}
+		<if test="fileName!=null">,#{fileName}</if>
+		)
+	</insert>
+
+
+	<!-- 쪽지 보기 : view -->
+	<select id="view" resultType="com.dk.groupware.message.model.Message">
+		select no, title, content,
+		to_char(sdate, 'yyyy-mm-dd AM hh:mi:ss') sdate,
+		sender, name, receiver, to_char(rdate, 'yyyy-mm-dd AM hh:mi:ss') rdate, fileName
+		from message msg, member mb
+		where no=#{no} and msg.sender=mb.id
+	</select>
+
+	<!-- EX) select member_id, if ( isnull(birthday), '-', birthday ) from member -->
+	<!-- 설명 - 멤버 테이블에서 아이디(member_id) 와 생일을 뽑는데 null 일경우는 - 를 출력, -->
+	<!-- 아니면 생일을 출력 -->
+	<!-- EX ) select ifnull ( price, 0 ) from books -->
+	<!-- 설명 - price 값이 Null 이면 0을, Null 이 아니면 price 값을 출력 -->
+
+	<!-- 쪽지 읽음 : update -->
+	<update id="update">
+		update message set rdate=sysdate where no=#{no}
+	</update>
+
+	<!-- 쪽지 삭제 : delete -->
+	<delete id="delete">
+		delete from message where no=#{no}
+	</delete>
+
+
+	<!-- send -->
+	<!-- 보낸쪽지 리스트 : list -->
+	<select id="sendList" resultType="com.dk.groupware.message.model.Message">
+		select * from
+		(
+		select rownum rnum, no, title, sender, receiver, rdate, sdate, name from
+		(
+		select no, title, to_char(sdate, 'yyyy-mm-dd AM HH:MI:SS') sdate, 
+		sender, receiver, to_char(rdate, 'yyyy-mm-dd AM HH:MI:SS') rdate, name
+		from message msg, member mb
+		where sender = #{id} and msg.receiver=mb.id
+		order by no desc
+		)
+		)
+		where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 보낸쪽지 보기 : view -->
+	<select id="sendView" resultType="com.dk.groupware.message.model.Message">
+		select no, title, content,
+		to_char(sdate, 'yyyy-mm-dd AM hh:mi:ss') sdate,
+		receiver, name, to_char(rdate, 'yyyy-mm-dd AM hh:mi:ss') rdate, fileName
+		from message msg, member mb
+		where 
+		no=#{no} and msg.receiver=mb.id
+	</select>
+
+	<!-- 보낸쪽지 삭제 : delete -->
+	<delete id="sendDelete">
+		delete from message where no=#{no}
+	</delete>
+	
+	<!-- 받은 쪽지 리스트 메인화면용 -->
+	<select id="listLimit" resultType="com.dk.groupware.message.model.Message">
+		select * from
+		(
+		select rownum rnum, no, title, sender, receiver, rdate, sdate, name from
+		(
+		select no, title, sender, receiver,
+		to_char(rdate, 'yyyy-mm-dd AM hh:mi:ss') rdate,
+		to_char(sdate, 'yyyy-mm-dd AM HH:MI:SS') sdate,
+		name
+		from message msg, member mb
+		where receiver=#{id} and msg.sender=mb.id
+		order by no desc
+		)
+		)
+		where rnum between 1 and 15
+	</select>
+
+	<!-- 글의 총 갯수 : if 및 반복문도 사용 가능 -->
+	<select id="totalRow" resultType="Integer">
+		select count(*) from message where receiver=#{id}
+	</select>
+	
+	<select id="sendTotalRow" resultType="Integer">
+		select count(*) from message where sender=#{id}
+	</select>
+
+
+</mapper>

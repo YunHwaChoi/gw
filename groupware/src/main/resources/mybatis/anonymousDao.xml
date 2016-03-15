@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.Anonymous">
+
+	<select id="list" resultType="com.dk.groupware.anonymous.model.Anonymous">
+	
+		select * from
+		(
+		select rownum rnum, no, title, writer, wdate, hit, rcount from
+		(
+		select a.no, title, a.writer, to_char(a.wdate, 'yyyy-mm-dd') wdate, hit, 
+		(select count(rno) from anonymousReply b where a.no=b.no) rcount
+		from anonymous a
+		order by no desc
+		)
+		)
+		where rnum between #{startRow} and #{endRow}
+		
+	</select>
+	
+	<select id="totalRow" resultType="Integer">
+		select count(*) from anonymous
+	</select>
+	
+	<select id="view" resultType="com.dk.groupware.anonymous.model.Anonymous">
+		select no, title, content, writer, to_char(wdate, 'yyyy-mm-dd') wdate, hit from anonymous where no=#{no}
+	</select>
+	
+	<insert id="write">
+		insert into anonymous(no, title, content, writer)
+		values(anonymous_seq.nextval, #{title}, #{content}, #{writer})
+	</insert>
+	
+	<update id="update">
+		update anonymous set title=#{title}, content=#{content} where no=#{no}
+	</update>
+
+	<delete id="delete">
+		delete from anonymous where no=#{no}
+	</delete>
+	
+	<update id="increase">
+		update anonymous set hit=hit+1 where no=#{no}
+	</update>
+	
+	<select id="replyList" resultType="com.dk.groupware.anonymous.model.AnonymousReply">
+		
+		select * from
+		(
+		select rownum rnum, rno, content, writer, wdate, no from
+		(
+		select rno, content, writer, to_char(wdate, 'yyyy-mm-dd') wdate, no
+		from anonymousReply
+		where no=#{id}
+		order by rno asc
+		)
+		)
+		where rnum between #{startRow} and #{endRow}
+		
+	</select>
+	
+	<select id="replyTotalRow" resultType="Integer">
+		select count(*) from anonymousReply where no=#{no}
+	</select>
+	
+	<insert id="replyWrite">
+		insert into anonymousReply(rno, content, writer, no)
+		values(anonymousReply_seq.nextval, #{content}, #{writer}, #{no})
+	</insert>
+	
+	<update id="replyUpdate">
+		update anonymousReply set content=#{content} where rno=#{rno}
+	</update>
+	
+	<delete id="replyDelete">
+		delete from anonymousReply where rno=#{rno}
+	</delete>
+
+</mapper>

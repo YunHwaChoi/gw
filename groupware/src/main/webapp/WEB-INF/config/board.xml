@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+<!-- controller -->
+	<bean class="com.dk.groupware.board.controller.BoardController">
+		<property name="boardListService" ref="boardListService" />
+		<property name="boardViewService" ref="boardViewService" />
+		<property name="boardWriteProcessService" ref="boardWriteProcessService" />
+		<property name="boardUpdateService" ref="boardUpdateService" />
+		<property name="boardUpdateProcessService" ref="boardUpdateProcessService" />
+		<property name="boardDeleteProcessService" ref="boardDeleteProcessService" />
+		<property name="boardSearchListService" ref="boardSearchListService" />
+	</bean>
+	
+<!-- 	service -->
+	<bean id="boardListService" class="com.dk.groupware.board.service.BoardListService">
+		<property name="boardDao" ref="boardDao" />
+	</bean>
+	<bean id="boardViewService" class="com.dk.groupware.board.service.BoardViewService">
+		<property name="boardDao" ref="boardDao" />
+	</bean>
+	<bean id="boardWriteProcessService" class="com.dk.groupware.board.service.BoardWriteProcessService">
+		<property name="boardDao" ref="boardDao" />
+	</bean>
+	<bean id="boardUpdateService" class="com.dk.groupware.board.service.BoardUpdateService">
+		<property name="boardDao" ref="boardDao" />
+	</bean>
+	<bean id="boardUpdateProcessService" class="com.dk.groupware.board.service.BoardUpdateProcessService">
+		<property name="boardDao" ref="boardDao" />
+	</bean>
+	<bean id="boardDeleteProcessService" class="com.dk.groupware.board.service.BoardDeleteProcessService">
+		<property name="boardDao" ref="boardDao" />
+	</bean>
+	<bean id="boardSearchListService" class="com.dk.groupware.board.service.BoardSearchListService">
+		<property name="boardDao" ref="boardDao" />
+	</bean>
+	
+<!-- 	dao -->
+	<bean id="boardDao" class="com.dk.groupware.board.dao.BoardDao">
+	 	<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+</beans>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.Board">
+
+<!-- 	게시판리스트 -->
+	<select id="list" resultType="com.dk.groupware.board.model.Board">
+		select * from (select rownum rnum, no, title, writer, name, wdate, hit from
+		(select no, title, writer, name, to_char(wdate,'yyyy-mm-dd') wdate, hit 
+		from board b, member m 
+		where b.writer=m.id order by no desc)) where rnum between #{startRow} and #{endRow}
+	</select>
+<!-- 	리스트 검색 -->
+	<select id="searchList" resultType="com.dk.groupware.board.model.Board">
+		select no, title, writer, name, to_char(wdate, 'yyyy-mm-dd') wdate, hit
+		from board b, member m 
+		where b.writer=m.id 
+		and
+		<if test="option == '제목'">title like '%'||#{search}||'%'</if>
+		<if test="option == '내용'">content like '%'||#{search}||'%'</if>
+		<if test="option == '제목+내용'">(title like '%'||#{search}||'%' or content like '%'||#{search}||'%')</if>
+		<if test="option == '작성자'">writer like '%'||#{search}||'%'</if>
+		order by no desc
+	</select>
+<!-- 	글의 총갯수 -->
+	<select id="selectCount" resultType="Integer">
+		select count(*) from board
+	</select>
+<!-- 	게시판 글보기 -->
+	<select id="view"
+	 resultType="com.dk.groupware.board.model.Board">
+		select no, title, content, writer, name, to_char(wdate,'yyyy-mm-dd') wdate, hit 
+		from board b, member m
+		where no=#{no} and b.writer=m.id
+	</select>
+<!-- 	게시판 글쓰기 -->
+	<insert id="write">
+		insert into board(no,title,content,writer)
+  		values(board_seq.nextval,#{title},#{content},#{writer})
+	</insert>
+<!-- 	게시판 글수정 -->
+  <update id="update">
+  	update board set title=#{title},content=#{content},
+  	writer=#{writer} where no=#{no}
+  </update>
+<!--   게시판 글삭제 -->
+  <delete id="delete">
+  	delete from board where no=#{no}
+  </delete>
+<!-- 	조회수 증가 -->
+<update id="hit">
+	update board set hit=hit+1 where no=#{no}
+</update>
+</mapper>

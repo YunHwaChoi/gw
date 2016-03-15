@@ -1,0 +1,64 @@
+@CHARSET "UTF-8";
+
+#table_view, .num {
+	margin: 0 auto;
+	font-size: 12pt;
+}
+
+.num th, .num td {
+	padding: 10px;
+	border: 1px solid #888888;
+	width: auto;
+}
+
+.num th {
+	background-color: #808080;
+	color: #fff;
+}
+
+.num td {
+	padding: 10px;
+	border: 1px solid #c3c3c3;
+	width: 950px;
+}
+
+.cont {
+	height: 300px;
+	vertical-align: top;
+	
+}
+#cont_pre{
+	 word-wrap: break-word;
+	 white-space: pre-wrap;
+	 white-space: -moz-pre-wrap;
+	 white-space: -pre-wrap;
+	 white-space: -o-pre-wrap;
+	 word-break:break-all;
+}
+#Btn{
+	text-align: center;
+}
+#list_Btn{
+	width: 85px;
+	height: 25px;
+	cursor: pointer;
+	background-color: #1a53ff;
+	color: white;
+}
+#submit_Btn{
+	width: 85px;
+	height: 24px;
+	cursor: pointer;
+	background-color: #00284d;
+	color: white;
+}
+#cancer_Btn{
+	width: 85px;
+	height: 25px;
+	cursor: pointer;
+	background-color: white;
+	color: #00284d;
+}
+h1{
+	text-align: center;
+}

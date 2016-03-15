@@ -1,0 +1,40 @@
+@CHARSET "UTF-8";
+
+#id, #name{
+	border: hidden;
+	background-color: #f4f4f4;
+	font-size: 15px;
+	padding-bottom: 10px;
+}
+
+table{
+	margin: 0 auto;
+	width: 500px;
+	border-radius: 8px;
+	border: 4px solid #888888;
+	padding: 15px;
+}
+
+#table2{
+	border: none;
+}
+
+
+#formDiv{
+	margin: 0 auto;
+	margin-top: 40px;
+}
+
+#pwresetDiv button {
+	float:right;
+	background-color: #969696;
+	border: 1px solid #dedede;
+	cursor: pointer;
+	padding: 10px;
+	margin: 0 auto;
+}
+
+#pwresetDiv button:hover{
+	background-color: #eed200;
+}
+

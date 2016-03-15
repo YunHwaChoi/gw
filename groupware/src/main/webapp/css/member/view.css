@@ -1,0 +1,57 @@
+@CHARSET "UTF-8";
+
+#table{
+	margin: o auto;
+	margin-bottom:10px;
+	height: auto;
+	width: 500px;
+	border-radius: 8px;
+	border: 4px solid #888888;
+	padding:15px;
+	margin-top: 40px;
+}
+
+#btnDiv button {
+	display: block;
+	background-color: #969696;
+	border: 1px solid #dedede;
+	cursor: pointer;
+	padding: 10px;
+	margin: 0 auto;
+	float: right;
+}
+
+#btnTable button:hover{
+	background-color: #edd200;
+}
+
+#table th{
+	width: 80px;
+	text-align: left;
+	padding-bottom: 8px;
+}
+
+#table td:Hover{
+	background-color: #aaaaaa;
+}
+
+#tdLine{
+	border-bottom: 1px dashed #ccc;
+}
+
+#btnTable button{
+	margin-top:20px;
+	float: right;
+	
+	display: block;
+	background-color: #969696;
+	border: 1px solid #dedede;
+	cursor: pointer;
+	padding: 10px;
+	margin: 0 auto;
+	float: right;
+	}
+	
+	
+
+

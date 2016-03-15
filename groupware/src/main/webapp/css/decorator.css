@@ -1,0 +1,161 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
+* {
+	margin: 0 auto;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+			box-sizing: border-box;
+	font-family: "Nanum Gothic", "sans-serif";
+}
+
+html {
+	height: calc(100% - 40px);
+}
+
+body {
+	height: 100%;
+}
+
+#wrapper {
+	height: 100%;
+}
+
+#header {
+	height: 40px;
+	background: #606060;
+	min-width: 960px;
+}
+
+	#main_title {
+		float: left;
+		border-right: 1px solid #969696;
+	}
+	
+		#main_title a {
+			text-decoration: none;
+			display: block;
+			width: 200px;
+			height: 100%;
+			padding: 7px 20px;
+			font-family: "Hanna", "Nanum Gothic", "sans-serif";
+			font-size: 20pt;
+			color: #edd200;
+		}
+		
+		#main_title a:visited {
+			text-decoration: none;
+		}
+	
+	#nav {
+		text-align: center;
+		font-weight: bolder;
+	}
+	
+		#nav ul {
+			list-style: none;
+		}
+		
+			#nav ul li {
+				float: left;
+				width: 100px;
+				height: 40px;
+				border-right: 1px solid #969696;
+			}
+			
+				#nav ul li a {
+					display: block;
+					width: 100%;
+					height: 100%;
+					text-decoration: none;
+					color: #ffffff;
+					padding-top: 10px;
+				}
+				
+				#nav ul li a:visited {
+					color: #ffffff;
+				}
+				
+				#nav ul li a:hover {
+					background: #969696;
+				}
+				
+	#status {
+		padding: 10px 20px;
+		float: right;
+		color: white;
+	}
+	
+		#status a {
+			text-decoration: none;
+			color: white;
+			font-weight: bolder;
+		}
+		
+		#status a:visited {
+			text-decoration: none;
+		}
+
+#side_left {
+	width: 200px;
+	height: 100%;
+	clear: both;
+	float: left;
+	background: #606060;
+	font-size: 10.5pt;
+}
+
+	#side_left ul {
+		list-style: none;
+		padding: 0;
+	}
+	
+		#side_left ul li {
+		
+		}
+		
+		.li_title {
+			background: #888888;
+			padding: 5px 10px;
+			border-top: 1px solid #aaaaaa;
+			border-bottom: 1px solid #333333;
+			color: white;
+			font-weight: bolder;
+		}
+		
+			.li_content a {
+				display: block;
+				text-decoration: none;
+				color: white;
+				padding: 5px 10px;
+			}
+			
+			.li_content a:visited {
+				text-decoration: none;
+				color: white;
+			}
+			
+			.li_content a:hover {
+				background: #969696;
+				color: black;
+			}
+
+#content_wrapper {
+	margin-left: 200px;
+ 	width: calc(100% - 200px);
+ 	height: calc(100% - 30px);
+ 	padding: 10px;
+ 	overflow-y: scroll;
+ 	background: #f4f4f4;
+}
+
+#content_wrapper::-webkit-scrollbar {
+	width: 0 !important
+}
+
+#footer {
+	height: 30px;
+	border : 1px solid #969696;
+	text-align: center;
+	background: #f4f4f4;
+}

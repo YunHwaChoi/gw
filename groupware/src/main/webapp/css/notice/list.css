@@ -1,0 +1,103 @@
+@CHARSET "UTF-8";
+
+#listForm table {
+	width: 1040px;
+}
+
+/* 이중 줄 합치기 */
+#noticeTable {
+	border-collapse: collapse;
+}
+
+#noticeTable, #noticeTr {
+	margin: 0 auto;
+	font-size: 10.5pt;
+}
+
+.noticeTh, .noticeTd {
+	padding: 10px;
+	border: 1px solid #888888;
+/* 	텍스트 가운데 정렬 */
+	text-align: center;
+}
+
+/* 제목 줄 배경색 */
+.noticeTh, #noticeThTitle {
+	background-color: #d0d0d0;
+}
+
+#noticeTdTitle {
+	border: 1px solid #888888;
+	height: 100%;
+	width: auto;
+}
+
+#noticeThTitle {
+	padding: 10px;
+	border: 1px solid #888888;
+	width: 600px;
+	
+/* 	overflow: hidden;  */
+}
+
+#noticeTdTitle:hover {
+	background: #d0d0d0;
+}
+#noticeTdTitle a{
+/* 	텍스트 링크의 밑줄 없애기 */
+	text-decoration: none;	
+	color: black;
+/* 한 줄 전체를 클릭가능하게 하기 위함 */
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+}
+
+/*  버튼 */
+#noticeBtn,  #noticeDeleteBtn {
+	display: block;
+	background-color: #969696;
+	border: 1px solid #dedede;
+	cursor: pointer;
+	padding: 10px;
+	margin: 0 auto;
+	float: right;
+}
+
+ #searchDiv button {
+/*  	display: block; */
+	background-color: #969696;
+	border: 1px solid #dedede;
+	cursor: pointer;
+	padding: 10px;
+/* 	margin: 0 auto; */
+/* 	float: left; */
+ }
+
+#searchDiv {
+	width: 500px;
+	float: left;
+}
+
+#searchDiv input, #searchDiv select {
+	padding: 8px;
+}
+
+
+#noticeBtnA a{
+	text-decoration: none;	
+}
+	
+
+#noticeBtn:hover, #noticeDeleteBtn:hover, #searchDiv button:hover {
+	background-color: #edd200;
+}
+
+#pageMove a {
+	color: black;
+}
+#pageMove {
+	margin-top: 20px;
+	text-align: center;
+}

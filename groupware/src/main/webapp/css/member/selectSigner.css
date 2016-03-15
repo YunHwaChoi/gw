@@ -1,0 +1,54 @@
+.body {
+	background: #ffffff;
+	padding: 20px;
+	text-align: center;
+}
+
+.clear {
+	clear: both;
+}
+
+.nbsp {
+	float: right;
+}
+
+.selectSignerTbl {
+	border: 1px solid #e0e1db;
+	border-collapse: collapse;
+}
+
+.selectSignerTbl tr {
+	border: 1px solid #e0e1db;
+}
+
+.selectSignerTbl th {
+	border: 1px solid #e0e1db;
+	padding: 3px 7px;
+	background: 
+}
+
+.selectSignerTbl td {
+	border: 1px solid #e0e1db;
+	padding: 3px 7px;
+}
+
+.signer:hover {
+	background: #d0d0d0;
+	cursor: pointer;
+}
+
+.id {
+	width: 100px;
+}
+
+.name {
+	width: 100px;
+}
+
+.dep {
+	width: 100px;
+}
+
+.position {
+	width: 70px;
+}
